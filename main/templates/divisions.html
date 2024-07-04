@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Product+Sans&display=swap');
+
+        body {
+            background-color: #000014;
+            font-family: 'Product Sans', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            margin: 0;
+        }
+
+        .wrapper {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .division-box {
+            background-color: #081030;
+            border-radius: 25px;
+            color: white;
+            width: 70%;
+            width: 610px;
+            margin: 20px 0;
+            padding: 25px;
+            display: flex;
+            align-items: center;
+            box-sizing: border-box;
+        }
+
+        .division-title {
+            font-size: 45px;
+            font-weight: bold;
+            text-align: left;
+            width: 250px; /* Set a fixed width for the title */
+            flex-shrink: 0; /* Prevent title from shrinking */
+        }
+
+        .division-description {
+            font-size: 27px;
+            color: #6C7CDA;
+            margin-left: 30px; /* Spacer between title and description */
+            flex-grow: 1; /* Allow description to take the remaining space */
+        }
+
+        .action-buttons {
+            display: flex;
+            align-items: center;
+            margin-top: 15px;
+        }
+
+        .apply-btn {
+            background-color: #374CCD;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            padding: 10px 20px;
+            font-size: 25px;
+            cursor: pointer;
+            margin-right: 10px;
+            font-family: 'Product Sans';
+        }
+
+        .status-bar {
+            display: flex;
+            flex-direction: column;
+            align-items: left;
+            margin-left: 10px;
+        }
+
+        .status-text {
+            color: #1A2569;
+            font-size: 30px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            text-align: left;
+        }
+
+        .progress-bar {
+            background-color: #1A2569;
+            border-radius: 25px;
+            width: 130px;
+            height: 15px;
+            overflow: hidden;
+        }
+
+        .progress {
+            background-color: #374CCD;
+            height: 100%;
+            border-radius: 25px;
+        }
+
+        /* Media queries for scaling the content based on window size */
+        @media (max-width: 1200px) {
+            body {
+                transform: scale(0.9);
+                transform-origin: top left;
+            }
+        }
+
+        @media (max-width: 1000px) {
+            body {
+                transform: scale(0.8);
+                transform-origin: top left;
+            }
+        }
+
+        @media (max-width: 800px) {
+            body {
+                transform: scale(0.7);
+                transform-origin: top left;
+            }
+        }
+
+       
+        @media (max-width: 370px) {
+            body {
+                transform: scale(0.57);
+                transform-origin: top left;
+            }
+        }
+    </style>
+    <title>Association Divisions</title>
+</head>
+<body>
+    <div class="wrapper">
+    {% for division in divisions %}
+    <div class="division-box">
+        <div class="division-title">{{ division.name|linebreaksbr }}</div>
+        <div class="division-description">
+            {{ division.description|linebreaksbr }}
+            <div class="action-buttons">
+                <button class="apply-btn" onclick="window.open('{{ division.apply_link }}', '_blank')">Apply</button>
+                <div class="status-bar">
+                    <span class="status-text">{{ division.status }}</span>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: {{ division.percentage }}%;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    </div>
+</body>
+</html>

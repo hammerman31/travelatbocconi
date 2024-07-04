@@ -1,0 +1,98 @@
+{% extends 'base-layout.html' %}
+
+{% block content %}
+<style>
+    .wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        min-height: 100vh;
+        padding: 10px;
+        margin-top: 130px;
+    }
+    .terms-container {
+        max-width: 500px;
+        padding: 20px;
+        background-color: #081030;
+        border-radius: 17px;
+        color: #6C7CDA;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+    .terms-container h2 {
+        text-align: center;
+        color: white;
+        padding: 10px;
+        border-radius: 10px;
+        font-size: 30px;
+    }
+    .terms-container h3 {
+        text-align: center;
+        color: white;
+        padding: 5px;
+        border-radius: 10px;
+    }
+    .terms-container p, .terms-container li {
+        text-align: left;
+    }
+    .terms-container ul {
+        list-style-type: none;
+        padding-left: 0;
+    }
+    .terms-container ul li {
+        margin-bottom: 10px;
+    }
+</style>
+<div class="wrapper">
+    <div class="terms-container">
+        <h2>Terms and Conditions</h2>
+        <ul>
+            <li><strong>1. Contractual Agreement:</strong> The T&C sets the contractual terms between your website and its users. It outlines the rules and guidelines for using your website and services, helping to manage user expectations.</li>
+            <li><strong>2. Limitation of Liability:</strong> It helps limit your liability in case of errors or issues with the website, or if users misuse the service.</li>
+            <li><strong>3. Intellectual Property:</strong> It defines the ownership and usage rights of the content and materials on your website.</li>
+            <li><strong>4. Dispute Resolution:</strong> It establishes the process for resolving any disputes that may arise from using the website.</li>
+            <li><strong>5. Acceptable Use Policy:</strong> It outlines what constitutes acceptable and unacceptable use of your website, helping to prevent misuse.</li>
+        </ul>
+        <h3>Introduction</h3>
+        <p>Welcome to Travel@B’s website (the “Website”). These terms and conditions (the “Terms”) govern your use of the Website. By accessing or using the Website, you agree to be bound by these Terms. If you do not agree with any part of these Terms, please do not use the Website.</p>
+        
+        <h3>1. Use of the Website</h3>
+        <p>1.1. You agree to use the Website only for lawful purposes and in a manner that does not infringe the rights of, restrict, or inhibit anyone else’s use and enjoyment of the Website.</p>
+        <p>1.2. You agree not to engage in any behavior that may harm the Website, its functionality, or its content.</p>
+        
+        <h3>2. Intellectual Property</h3>
+        <p>2.1. All content on the Website, including text, graphics, logos, images, and software, is the property of Travel@B or its content suppliers and is protected by intellectual property laws.</p>
+        <p>2.2. You may not reproduce, distribute, or create derivative works from any content on the Website without our express written permission.</p>
+        
+        <h3>3. User-Generated Content</h3>
+        <p>3.1. If you submit any content to the Website, you grant Travel@B a non-exclusive, royalty-free, perpetual, and worldwide license to use, reproduce, modify, and distribute such content.</p>
+        <p>3.2. You represent and warrant that any content you submit does not infringe the rights of any third party.</p>
+        
+        <h3>4. Reservations and Payments</h3>
+        <p>4.1. When you make a reservation for a trip via the Website, you must provide accurate and complete information.</p>
+        <p>4.2. Payment details and transactions are handled separately from the Website and are subject to separate terms agreed upon between you and Travel@B.</p>
+        
+        <h3>5. Limitation of Liability</h3>
+        <p>5.1. The Website is provided “as is” and Travel@B makes no representations or warranties of any kind, express or implied, about the Website’s operation or the information, content, or materials included on the Website.</p>
+        <p>5.2. Travel@B will not be liable for any damages of any kind arising from the use of the Website.</p>
+        
+        <h3>6. Changes to the Terms</h3>
+        <p>6.1. We may update these Terms from time to time. Any changes will be posted on this page, and where appropriate, notified to you by email.</p>
+        
+        <h3>7. Governing Law</h3>
+        <p>7.1. These Terms are governed by and construed in accordance with the laws of Italy. Any disputes relating to these Terms will be subject to the exclusive jurisdiction of the courts of [Your Country].</p>
+        
+        <h3>8. Contact Us</h3>
+        <p>If you have any questions about these Terms, please contact us at:</p>
+        <p>Travel@B</p>
+        <p>Viale Premuda 2</p>
+        <p>Milano, 20129</p>
+        <p>Italy</p>
+        <p>travelatbocconi@gmail.com</p>
+        
+        <p>Effective Date: 04.07.024</p>
+    </div>
+</div>
+{% load static %}
+{% endblock %}

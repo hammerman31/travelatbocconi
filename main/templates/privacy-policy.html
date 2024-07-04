@@ -1,0 +1,124 @@
+{% extends 'base-layout.html' %}
+
+{% block content %}
+<style>
+    .wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        min-height: 100vh;
+        padding: 10px;
+        margin-top: 130px;
+    }
+    .terms-container {
+        max-width: 500px;
+        padding: 20px;
+        background-color: #081030;
+        border-radius: 17px;
+        color: #6C7CDA;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+    .terms-container h2 {
+        text-align: center;
+        color: white;
+        padding: 10px;
+        border-radius: 10px;
+        font-size: 30px;
+    }
+    .terms-container h3 {
+        text-align: center;
+        color: white;
+        padding: 5px;
+        border-radius: 10px;
+    }
+    .terms-container p, .terms-container li {
+        text-align: left;
+    }
+    .terms-container ul {
+        list-style-type: none;
+        padding-left: 0;
+    }
+    .terms-container ul li {
+        margin-bottom: 10px;
+    }
+</style>
+<div class="wrapper">
+    <div class="terms-container">
+        <h2>Privacy Policy</h2>
+        
+        <h3>Introduction</h3>
+        <p>Travel@B (“we”, “us”, “our”) is committed to protecting and respecting your privacy. This Privacy Policy explains how we collect, use, and disclose personal data when you use our website and services, in compliance with the General Data Protection Regulation (GDPR).</p>
+        
+        <h3>1. Data Controller</h3>
+        <p>The data controller for the purposes of the GDPR is:</p>
+        <p>Travel@B</p>
+        <p>Viale Premuda 2</p>
+        <p>Milano, 20129</p>
+        <p>Italy</p>
+        <p>travelatbocconi@gmail.com</p>
+        
+        <h3>2. Personal Data We Collect</h3>
+        <p>We collect and process the following personal data when you make a reservation for a trip via our website:</p>
+        <ul>
+            <li>First Name</li>
+            <li>Last Name</li>
+            <li>Student Email Address</li>
+        </ul>
+        
+        <h3>3. How We Use Your Personal Data</h3>
+        <p>We use your personal data to:</p>
+        <ul>
+            <li>Confirm your reservation</li>
+            <li>Contact you regarding your reservation</li>
+            <li>Arrange and confirm payment details (handled separately from the website)</li>
+        </ul>
+        
+        <h3>4. How We Collect Your Personal Data</h3>
+        <p>We collect personal data through our website’s reservation form. The information you provide is not stored on our servers. Instead, it is transmitted directly to our association’s email via a third-party service called Formspree.</p>
+        
+        <h3>5. Legal Basis for Processing Your Personal Data</h3>
+        <p>We process your personal data based on the following legal grounds:</p>
+        <ul>
+            <li>Performance of a contract: The processing is necessary for the performance of a contract to which you are a party (i.e., the reservation and participation in the trip).</li>
+            <li>Legitimate interests: We have a legitimate interest in processing your data to manage and organize our trips and to facilitate communication regarding reservations.</li>
+        </ul>
+        
+        <h3>6. Data Sharing and Disclosure</h3>
+        <p>We do not sell, trade, or otherwise transfer your personal data to outside parties. Your personal data is only accessible to the members of our association responsible for managing trip reservations.</p>
+        
+        <h3>7. Data Security</h3>
+        <p>We implement appropriate technical and organizational measures to protect your personal data against unauthorized access, alteration, disclosure, or destruction. The data is transmitted securely via Formspree to our association’s email.</p>
+        
+        <h3>8. Data Retention</h3>
+        <p>We retain your personal data only for as long as necessary to fulfill the purposes we collected it for, including satisfying any legal, accounting, or reporting requirements.</p>
+        
+        <h3>9. Your Rights</h3>
+        <p>Under the GDPR, you have the following rights regarding your personal data:</p>
+        <ul>
+            <li>Right to access: You can request access to your personal data and obtain a copy of it.</li>
+            <li>Right to rectification: You can request correction of any inaccurate or incomplete data we hold about you.</li>
+            <li>Right to erasure: You can request deletion of your personal data under certain circumstances.</li>
+            <li>Right to restrict processing: You can request restriction of processing your personal data under certain circumstances.</li>
+            <li>Right to data portability: You can request to receive your personal data in a structured, commonly used, and machine-readable format.</li>
+            <li>Right to object: You can object to the processing of your personal data under certain circumstances.</li>
+        </ul>
+        <p>To exercise any of these rights, please contact us at travelatbocconi@gmail.com.</p>
+        
+        <h3>10. Changes to This Privacy Policy</h3>
+        <p>We may update this Privacy Policy from time to time. Any changes we make will be posted on this page, and where appropriate, notified to you by email. Please check back frequently to see any updates or changes.</p>
+        
+        <h3>11. Contact Us</h3>
+        <p>If you have any questions or concerns about this Privacy Policy or our data practices, please contact us at:</p>
+        <p>Travel@B</p>
+        <p>Viale Premuda 2</p>
+        <p>Milano, 20129</p>
+        <p>Italy</p>
+        <p>travelatbocconi@gmail.com</p>
+        
+        <p>Effective Date: 04.07.024</p>
+    </div>
+</div>
+{% load static %}
+{% endblock %}

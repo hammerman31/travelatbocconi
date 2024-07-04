@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>iMessage Chat Simulation</title>
+<style>
+  /* Custom styles for the chat bubbles */
+  @import url('https://fonts.googleapis.com/css2?family=Product+Sans&display=swap');
+
+  body {
+    font-family: 'Product Sans', sans-serif;
+    background-color: #000014;
+    color: white;
+  }
+
+  .list {
+    --sentColor: #3c53c7;
+    --receiveColor: #081030; 
+    --bg: #000014;
+
+    display: flex;
+    flex-direction: column;
+    max-width: 450px;
+    margin: 0 auto;
+    padding: 0;
+    list-style: none;
+    font-size: 20px;
+  }
+
+  .shared {
+    position: relative;
+    max-width: 255px;
+    margin-bottom: 15px;
+    padding: 10px 20px;
+    line-height: 24px;
+    word-wrap: break-word;
+    border-radius: 25px;
+
+    &:before {
+      width: 20px;
+    }
+
+    &:after {
+      width: 26px;
+      background-color: var(--bg);
+    }
+
+    &:before,
+    &:after {
+      position: absolute;
+      bottom: 0;
+      height: 25px;
+      content: '';
+    }
+  }
+
+  .noTail {
+    margin-bottom: 2px;
+
+    &:before,
+    &:after {
+      opacity: 0;
+    }
+  }
+
+  .sent {
+    align-self: flex-end;
+    background: var(--sentColor);
+
+    &:before {
+      right: -7px;
+      background-color: var(--sentColor);
+      border-bottom-left-radius: 16px 14px;
+    }
+
+    &:after {
+      right: -26px;
+      border-bottom-left-radius: 10px;
+    }
+  }
+
+  .received {
+    align-self: flex-start;
+    background: var(--receiveColor);
+
+    &:before {
+      left: -7px;
+      background-color: var(--receiveColor);
+      border-bottom-right-radius: 16px 14px;
+    }
+
+    &:after {
+      left: -26px;
+      border-bottom-right-radius: 10px;
+    }
+  }
+  
+</style>
+</head>
+<body>
+<div>
+  <div>
+    <ol class="list">
+    </ol>
+  </div>
+</div>
+<script>
+  const messages = [
+    { text: "Hey,  I heard about your association. What is it about?", sent: true },
+    { text: "Wether you prefer a historical trip to European landmarks or the most unhinged party experiences, Travel@B is sure to make you forget about your math partial grade ;)" },
+    { text: "What are the people in your association like?", sent: true },
+    { text: "We are outgoing poeple with a shared passion for both travelling and making new friends." },
+    { text: "What are the requirements to join?", sent: true },
+    { text: "None. Everyone can join our association!" },
+  ];
+
+  const listElement = document.querySelector('.list');
+
+  messages.forEach(({ text, sent }, index) => {
+    const messageElement = document.createElement('li');
+    messageElement.textContent = text;
+    messageElement.classList.add('shared');
+    if (sent) {
+      messageElement.classList.add('sent');
+    } else {
+      messageElement.classList.add('received');
+    }
+    if (index < messages.length - 1 && messages[index + 1]?.sent === sent) {
+      messageElement.classList.add('noTail');
+    }
+    listElement.appendChild(messageElement);
+  });
+
+ 
+</script>
+</body>
+</html>

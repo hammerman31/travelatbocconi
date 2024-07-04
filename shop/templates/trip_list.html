@@ -1,0 +1,411 @@
+{% extends 'base-layout.html' %}
+
+{% block content %}
+{% load static %}
+<head>
+    <title>Trip List</title>
+    <script src="https://kit.fontawesome.com/dbddb82792.js" crossorigin="anonymous"></script>
+    <style>
+        .trip-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin:7px;
+        }
+
+        .trip-box {
+            background-color: #081030;
+            color: white;
+            border-radius: 15px;
+            padding: 20px;
+            width: 380px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .trip-header {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            margin-bottom: 10px;
+            background-color: #0e153a;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            border-radius: 12px;
+        }
+
+        .trip-title {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            text-align: left;
+        }
+
+        .icon-container {
+            margin-right: 15px;
+            margin-left: 15px;
+            width: 50px;
+            height: 50px;
+            position: relative; /* Add position relative */
+        }
+
+        .circle-svg {
+            width: 50px;
+            height: 50px;
+            margin-top: 3px;
+        }
+        .person-svg{
+            width: 20px;
+            height: 25px;
+            margin-top: 8px;
+        }
+
+        .circle-svg circle {
+            fill: none;
+        }
+
+        .circle1 {
+            stroke-width: 6px;
+            stroke: #1a2569;
+        }
+
+        .circle2 {
+            stroke-width: 6px;
+            stroke-dasharray: 126; /* Circle perimeter is 126 */
+            stroke-dashoffset: 126;
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+        }
+
+        .person-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 20px;
+            color: #1a2569;
+            font-family: "Font Awesome 6 Brands";
+        }
+
+        .trip-info-content {
+            flex: 1;
+        }
+
+        .trip-title h2 {
+            margin: 0;
+            font-size: 35px;
+        }
+
+        .trip-title p {
+            margin: 5px 0 0;
+        }
+
+        .trip-content {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .trip-options {
+            background-color: #0e153a;
+            border-radius: 10px;
+            padding: 10px;
+            flex: 1;
+            margin-right: 10px;
+            text-align: left;
+        }
+
+        .trip-options p {
+            margin-bottom: -10px;
+            margin-top: 5px;
+            text-align: center;
+        }
+
+        .trip-options li {
+            font-size: 20px;
+        }
+
+        .trip-options ul {
+            text-align: left;
+            padding-left: 10px;
+            margin-bottom: -10px;
+        }
+
+        .trip-info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .trip-price {
+            background-color: #0e153a;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+        .trip-price p{
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        .trip-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .info-button,
+        .reserve-button {
+            background-color: #3c53c7;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            padding: 5px 15px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 20px;
+            font-weight: 400;
+            font-family: 'Product Sans';
+        }
+
+        .info-button:hover,
+        .reserve-button:hover {
+            background-color: #1a2569;
+        }
+        .checkbox-wrapper-15{
+            margin-bottom: 3px;
+        }
+
+        .checkbox-wrapper-15 .cbx {
+            -webkit-user-select: none;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+            cursor: pointer;
+        }
+
+        .checkbox-wrapper-15 .cbx span {
+            display: inline-block;
+            vertical-align: middle;
+            transform: translate3d(0, 0, 0);
+        }
+
+        .checkbox-wrapper-15 .cbx span:first-child {
+            position: relative;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            transform: scale(1);
+            vertical-align: middle;
+            border: 1px solid #B9B8C3;
+            transition: all 0.2s ease;
+        }
+
+        .checkbox-wrapper-15 .cbx span:first-child svg {
+            position: absolute;
+            z-index: 1;
+            top: 8px;
+            left: 6px;
+            fill: none;
+            stroke: white;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke-dasharray: 16px;
+            stroke-dashoffset: 16px;
+            transition: all 0.3s ease;
+            transition-delay: 0.1s;
+            transform: translate3d(0, 0, 0);
+        }
+
+        .checkbox-wrapper-15 .cbx span:first-child:before {
+            content: "";
+            width: 100%;
+            height: 100%;
+            background: #506EEC;
+            display: block;
+            transform: scale(0);
+            opacity: 1;
+            border-radius: 50%;
+            transition-delay: 0.2s;
+        }
+
+        .checkbox-wrapper-15 .cbx span:last-child {
+            margin-left: 8px;
+        }
+
+        .checkbox-wrapper-15 .cbx:hover span:first-child {
+            border-color: #3c53c7;
+        }
+
+        .checkbox-wrapper-15 .inp-cbx:checked+.cbx span:first-child {
+            border-color: #3c53c7;
+            background: #3c53c7;
+            animation: check-15 0.6s ease;
+        }
+
+        .checkbox-wrapper-15 .inp-cbx:checked+.cbx span:first-child svg {
+            stroke-dashoffset: 0;
+        }
+
+        .checkbox-wrapper-15 .inp-cbx:checked+.cbx span:first-child:before {
+            transform: scale(2.2);
+            opacity: 0;
+            transition: all 0.6s ease;
+        }
+
+        .checkbox-wrapper-15 .inp-cbx:checked+.cbx span:last-child:after {
+            transform: scaleX(1);
+            transition: all 0.3s ease;
+        }
+
+        @keyframes check-15 {
+            50% {
+                transform: scale(1.2);
+            }
+        }
+        .total-price-price{
+            font-size: 35px;
+        }
+        .trip-h1{
+            margin-top: 130px;
+            font-size: 60px;
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            function updatePrice(tripId, basePrice) {
+                let checkboxes = document.querySelectorAll('.option-checkbox-' + tripId);
+                let totalPrice = basePrice;
+
+                checkboxes.forEach(checkbox => {
+                    if (checkbox.checked) {
+                        let priceIncrease = parseFloat(checkbox.getAttribute('data-price-increase'));
+                        totalPrice += priceIncrease;
+                    }
+                });
+
+                document.getElementById('total-price-' + tripId).textContent = totalPrice.toFixed(2) + '€';
+            }
+
+            window.updatePrice = updatePrice;
+
+            function reserveNow(tripId) {
+                let selectedOptions = [];
+                let checkboxes = document.querySelectorAll('.option-checkbox-' + tripId);
+                let totalPrice = parseFloat(document.getElementById('total-price-' + tripId).textContent);
+
+                let form = document.createElement('form');
+                form.method = 'POST';
+                form.action = '{% url "reserve_trip" %}';
+
+                let csrfToken = document.createElement('input');
+                csrfToken.type = 'hidden';
+                csrfToken.name = 'csrfmiddlewaretoken';
+                csrfToken.value = '{{ csrf_token }}';
+                form.appendChild(csrfToken);
+
+                let inputTripId = document.createElement('input');
+                inputTripId.type = 'hidden';
+                inputTripId.name = 'trip_id';
+                inputTripId.value = tripId;
+                form.appendChild(inputTripId);
+
+                let inputOptions = document.createElement('input');
+                inputOptions.type = 'hidden';
+                inputOptions.name = 'options';
+                inputOptions.value = JSON.stringify(selectedOptions);
+                form.appendChild(inputOptions);
+
+                let inputTotalPrice = document.createElement('input');
+                inputTotalPrice.type = 'hidden';
+                inputTotalPrice.name = 'total_price';
+                inputTotalPrice.value = totalPrice.toFixed(2);
+                form.appendChild(inputTotalPrice);
+
+                document.body.appendChild(form);
+                form.submit();
+            }
+
+            window.reserveNow = reserveNow;
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            {% for trip in trips %}
+            setCircleProgress('circle2-{{ forloop.counter }}', {{ trip.percentage | safe }});
+            {% endfor %}
+        });
+
+        function setCircleProgress(circleId, percentage) {
+            const circle = document.getElementById(circleId);
+            const radius = circle.r.baseVal.value;
+            const circumference = 2 * Math.PI * radius;
+            const offset = circumference - (percentage / 100) * circumference;
+            circle.style.strokeDasharray = circumference;
+            circle.style.strokeDashoffset = offset;
+        }
+    </script>
+</head>
+<body>
+    <h1 class="trip-h1">Trips</h1>
+    <div class="trip-list">
+        {% for trip in trips %}
+        <div class="trip-box">
+            <div class="trip-header">
+                <div class="trip-title">
+                    <div id="div1" class="icon-container">
+                        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="50px" height="50px" class="circle-svg">
+                            <defs>
+                                <linearGradient id="GradientColor">
+                                    <stop offset="0%" stop-color="#3c53c7" />
+                                    <stop offset="100%" stop-color="#3c53c7" />
+                                </linearGradient>
+                            </defs>
+                            <circle cx="25" cy="25" r="22" stroke-linecap="round" class="circle1" />
+                            <circle cx="25" cy="25" r="22" stroke-linecap="round" class="circle2" id="circle2-{{ forloop.counter }}" style="stroke:url(#GradientColor);" />
+                        </svg>
+                        <span class="person-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="person-svg" viewBox="0 0 320 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M112 48a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm40 304V480c0 17.7-14.3 32-32 32s-32-14.3-32-32V256.9L59.4 304.5c-9.1 15.1-28.8 20-43.9 10.9s-20-28.8-10.9-43.9l58.3-97c17.4-28.9 48.6-46.6 82.3-46.6h29.7c33.7 0 64.9 17.7 82.3 46.6l58.3 97c9.1 15.1 4.2 34.8-10.9 43.9s-34.8 4.2-43.9-10.9L232 256.9V480c0 17.7-14.3 32-32 32s-32-14.3-32-32V352H152z" fill="#3c53c7"/></svg>
+                        </span>
+                    </div>
+                    <div class="trip-info-content">
+                        <h2>{{ trip.name }}</h2>
+                        <p style="color: #ccc;">{{ trip.start_date }} - {{ trip.end_date }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="trip-content">
+                <div class="trip-options">
+                    <p style="color: #ccc;">Options</p>
+                    <ul>
+                        {% for option in trip.options.all %}
+                        <li>
+                            <div class="checkbox-wrapper-15">
+                                <input id="cbx-{{ trip.id }}-{{ option.id }}" type="checkbox" style="display: none;" class="inp-cbx option-checkbox-{{ trip.id }}" value="{{ option.id }}" data-price-increase="{{ option.price_increase }}" onchange="updatePrice('{{ trip.id }}', {{ trip.price }})" />
+                                <label class="cbx" for="cbx-{{ trip.id }}-{{ option.id }}">
+                                    <span>
+                                        <svg width="12px" height="9px" viewbox="0 0 12 9">
+                                            <polyline points="1 5 4 8 11 1"></polyline>
+                                        </svg>
+                                    </span>
+                                    <span>{{ option.name }}</span>
+                                </label>
+                            </div>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="trip-info">
+                    <div class="trip-price">
+                        <p><span class="total-price-price" id="total-price-{{ trip.id }}">{{ trip.price }}€</span></p>
+                    </div>
+                    <div class="trip-buttons">
+                        <button class="info-button"  onclick="window.location.href='{{ trip.ig_link }}'">More Info</button>
+                        <button class="reserve-button" onclick="reserveNow('{{ trip.id }}')">Reserve</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock %}

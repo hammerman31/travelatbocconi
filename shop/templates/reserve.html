@@ -1,0 +1,133 @@
+{% extends 'base-layout.html' %}
+
+{% block content %}
+<style>
+    /* Styles for the overall form container */
+    .form-container {
+        background-color: #081030;
+        border-radius: 15px;
+        padding: 20px;
+        margin-bottom: 20px;
+        margin-top: 150px;
+        width: 280px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* Styles for the headline "Reservation Form" */
+    .form-container h1 {
+        color: #fff;
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+
+    /* Styles for the light grey rectangle with the info text and icon */
+    .info-container {
+        background-color: #0e153a;
+        border-radius: 10px;
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    .info-container .info-text {
+        flex: 1;
+        margin-left: 0px;
+    }
+
+    .info-container .info-text p {
+        margin-left: 10px;
+        font-size: 14px;
+        color: #6C7CDA;
+        text-align: left;
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    .info-container .info-icon {
+        font-size: 36px;
+        color: #3c53c7;
+        margin-left: 3px;
+        margin-right: 3px;
+    }
+
+    /* Styles for text inputs */
+    input[type="text"],
+    input[type="email"] {
+        width: 100%;
+        padding: 10px 15px;
+        border: 1px solid #0e153a;
+        background-color: #0e153a;
+        border-radius: 25px;
+        margin-bottom: 10px;
+        box-sizing: border-box; /* Ensures padding is included in width */
+        color: white; /* Text color */
+        font-size: 16px;
+        font-family: 'Product Sans';
+    }
+
+    input[type="text"]::placeholder,
+    input[type="email"]::placeholder {
+        color: #6C7CDA;
+        font-family: 'Product Sans';
+        font-size: 16px;
+    }
+
+    /* Styles for the submit button */
+    button[type="submit"] {
+        background-color: #3c53c7;
+        color: white;
+        border: none;
+        border-radius: 25px;
+        padding: 10px 20px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        font-size: 18px;
+        font-weight: 400;
+        font-family: 'Product Sans', sans-serif;
+    }
+
+    button[type="submit"]:hover {
+        background-color: #5069e7;
+    }
+
+    label {
+    display: block;
+    text-align: left;
+    color: white;
+    margin-bottom: 5px;
+    margin-left: 15px;
+    font-size: 17px;
+    font-weight: 500;
+    font-family: 'Product Sans';
+}
+
+.submit-button{
+    margin-top: 10px;
+}
+</style>
+<div class="form-container">
+    <h1>Reservation Form</h1>
+    <div class="info-container">
+        <div class="info-icon">ℹ️</div>
+        <div class="info-text">
+            <p>After submitting this form you will get a confirmation email within 1-2 days and the possibility to pay.</p>
+        </div>
+    </div>
+    <form action="https://formspree.io/f/mldrrzdo" method="POST">
+        <input type="hidden" name="trip_name" value="{{ trip.name }}">
+        <input type="hidden" name="trip_price" value="{{ total_price }}">
+        <input type="hidden" name="options" value="{{ selected_options }}">
+
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" placeholder="First and Last Name" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" placeholder="Your Bocconi email" pattern=".+@studbocconi\.it" required>
+
+        <button type="submit" class="submit-button">Submit</button>
+    </form>
+</div>
+
+{% endblock %}

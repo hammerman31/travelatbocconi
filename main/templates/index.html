@@ -1,0 +1,72 @@
+{% extends 'base-layout.html' %}
+
+{% block content %}
+{% load static %}
+<div id="content-desktop" class="content">
+  <div class="iframe-container">
+    <div class="travel">travel</div>
+    <div>
+        <iframe class="frame" src="{% static 'frames/globe.html' %}" width="1000" height="1000" frameborder="0"></iframe>
+        <div class="study-later">study later</div>
+    </div>
+    <div class="now">now</div>
+  </div>
+</div>
+
+<div id="content-mobile" class="content">
+  <div class="iframe-container">
+    <div class="txt-div">
+      <div class="travel">travel</div>
+      <div class="now">now</div>
+      <div class="study-later">study later</div>
+    </div>
+    <div class="globe-div">
+      <iframe class="frame" src="{% static 'frames/globe.html' %}" scrolling="no" frameborder="0"></iframe>
+    </div>
+  </div>
+</div>
+
+<script>
+  function updateContentBasedOnWidth() {
+    const desktopContent = document.getElementById('content-desktop');
+    const mobileContent = document.getElementById('content-mobile');
+    if (window.innerWidth > 1500) {
+      desktopContent.classList.add('active');
+      mobileContent.classList.remove('active');
+    } else {
+      desktopContent.classList.remove('active');
+      mobileContent.classList.add('active');
+    }
+  }
+
+  window.addEventListener('resize', updateContentBasedOnWidth);
+  window.addEventListener('load', updateContentBasedOnWidth);
+</script>
+{% load static %}
+<div class="second-page what-div">
+  <div class="container1">
+    <div class="headline">What<br>are we?</div>
+    <iframe src="{% static 'frames/chat.html' %}" width="550"  height="800" scrolling="no" frameborder="0" class="chat-frame"></iframe>
+  </div>
+</div>
+
+<div class="second-page hide-1200" style="margin-top:100px">
+  <div class="container1">
+    <iframe src="{% url 'trips' %}" width="500" height="345" scrolling="no" frameborder="0" style="z-index: 10;"></iframe>
+    <div class="headline2">Next<br>trips</div>
+  </div>
+</div>
+
+<div class="trips-div">
+  <div class="second-page hide-more-1200" style="margin-top:100px">
+    <div class="container1">
+      <div class="headline2">Next<br>trips</div>
+      <iframe src="{% url 'trips' %}" width="500" height="345" scrolling="no" frameborder="0" class="trips-frame"></iframe>
+    </div>
+  </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+{% endblock %}

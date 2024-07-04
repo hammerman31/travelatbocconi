@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* Styles for the overall form container */
+        @import url('https://fonts.googleapis.com/css2?family=Product+Sans&display=swap');
+
+        body{
+            background-color: #000014;
+            transform: scale(1.0);
+            transform-origin: top left;
+        }
+        .form-container {
+            background-color: #000014;
+            border-radius: 15px;
+            padding: 20px;
+            max-width: 380px;
+            top: 0;
+            left:0;
+            margin-right: 10px; 
+        }
+    
+    
+        /* Styles for text inputs */
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: 100%;
+            padding: 15px 20px;
+            border: 1px solid #0e153a;
+            background-color: #0e153a;
+            border-radius: 25px;
+            margin-bottom: 10px;
+            box-sizing: border-box; /* Ensures padding is included in width */
+            color: white; /* Text color */
+            font-family: 'Product Sans';
+            font-size: 18px;
+        }
+    
+        input[type="text"]::placeholder,
+        input[type="email"]::placeholder,
+        textarea::placeholder {
+            color: #6C7CDA;
+            font-family: 'Product Sans';
+            font-size: 18px;
+        }
+    
+        /* Styles for the submit button */
+        button[type="submit"] {
+            background-color: #3c53c7;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 22px;
+            font-weight: 400;
+            font-family: 'Product Sans', sans-serif;
+        }
+    
+        button[type="submit"]:hover {
+            background-color: #5069e7;
+        }
+    
+        label {
+        display: block;
+        text-align: left;
+        color: white;
+        margin-bottom: 5px;
+        margin-left: 15px;
+        font-size: 22px;
+        font-weight: 500;
+        font-family: 'Product Sans';
+    }
+    
+    .submit-button{
+        margin-top: 10px;
+    }
+    </style>
+    <body>
+        <div class="form-container">
+            <form action="https://formspree.io/f/mldrrzdo" method="POST">
+                <input type="hidden" name="trip_name" value="{{ trip.name }}">
+                <input type="hidden" name="trip_price" value="{{ total_price }}">
+                <input type="hidden" name="options" value="{{ selected_options }}">
+        
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" placeholder="First and Last Name" required>
+        
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" placeholder="Your Email" required>
+        
+                <label for="name">Message:</label>
+                <textarea rows="5" id="message" name="message" placeholder="Your message" required></textarea>
+
+                <button type="submit" class="submit-button">Send</button>
+            </form>
+        </div>
+    </body>
+</html>

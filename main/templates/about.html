@@ -1,0 +1,50 @@
+{% extends 'base-layout.html' %}
+
+{% block content %}
+
+
+{% load static %}
+
+
+<div class="second-page what-div">
+  <div class="container1">
+    <div class="headline">Our<br>Divisions</div>
+    <iframe src="{% url 'divisions' %}" width="450"  height="550" scrolling="no" frameborder="0" class="chat-frame"></iframe>
+  </div>
+</div>
+
+<div class="second-page hide-1200" style="margin-top:100px">
+  <div class="container1">
+    <iframe src="{% url 'contact' %}" width="500" height="500" style="border-radius: 25px;" scrolling="no" frameborder="0" style="z-index: 10;"></iframe>
+    <div class="headline2">Contact<br>us</div>
+  </div>
+</div>
+<style>
+    @media (max-width: 420px) {
+    .headline2 {
+        margin-right: 0px;
+    }
+    .chat-frame{
+        height: 400px;
+    }
+    .trips-frame{
+        width: 400px;
+    }
+    .headline2{
+        margin-right: 50px;
+    }
+    .second-page{
+        margin-top: 90px;
+    }
+}
+</style>
+<div class="trips-div">
+  <div class="second-page hide-more-1200" style="margin-top:100px">
+    <div class="container1">
+      <div class="headline2">Contact<br>us</div>
+      <iframe src="{% url 'contact' %}" width="500" height="500" scrolling="no" frameborder="0" class="trips-frame" style="border-radius: 25px;"></iframe>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
