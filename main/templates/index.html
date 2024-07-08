@@ -6,7 +6,7 @@
   <div class="iframe-container">
     <div class="travel">travel</div>
     <div>
-        <iframe class="frame" src="{% static 'frames/globe.html' %}" width="1000" height="1000" frameborder="0"></iframe>
+        <iframe class="frame" src="{% url 'globe' %}" width="1000" height="1000" frameborder="0"></iframe>
         <div class="study-later">study later</div>
     </div>
     <div class="now">now</div>
@@ -21,7 +21,7 @@
       <div class="study-later">study later</div>
     </div>
     <div class="globe-div">
-      <iframe class="frame" src="{% static 'frames/globe.html' %}" scrolling="no" frameborder="0"></iframe>
+      <iframe class="frame" src="{% url 'globe' %}" scrolling="no" frameborder="0"></iframe>
     </div>
   </div>
 </div>
@@ -46,7 +46,7 @@
 <div class="second-page what-div">
   <div class="container1">
     <div class="headline">What<br>are we?</div>
-    <iframe src="{% static 'frames/chat.html' %}" width="550"  height="800" scrolling="no" frameborder="0" class="chat-frame"></iframe>
+    <iframe src="{% url 'chat' %}" width="550"  height="800" scrolling="no" frameborder="0" class="chat-frame"></iframe>
   </div>
 </div>
 

@@ -28,6 +28,8 @@ urlpatterns = [
     path('privacypolicy/', views.privacypolicy, name='privacypolicy'),
     path('divisions/', views.divisions, name='divisions'),
     path('contact/', views.contact, name='contact'),
+    path('globe/', views.globe, name='globe'),
+    path('chat/', views.chat, name='chat'),
     path('shop/', include('shop.urls')),
 ]
 

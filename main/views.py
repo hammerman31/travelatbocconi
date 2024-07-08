@@ -31,6 +31,12 @@ def privacypolicy(request):
 @xframe_options_exempt
 def contact(request):
     return render(request, 'contact.html')
+@xframe_options_exempt
+def globe(request):
+    return render(request, 'globe.html')
+@xframe_options_exempt
+def chat(request):
+    return render(request, 'chat.html')
 
 def trips_view(request):
     trips = Trip.objects.filter(max_places__gt=F('taken_places')).order_by('-start_date')[:3]
