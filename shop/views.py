@@ -22,7 +22,7 @@ def reserve_trip(request):
             trip = get_object_or_404(Trip, id=trip_id)
             options_ids = json.loads(options_ids)
             selected_options = Option.objects.filter(id__in=options_ids)
-           
+            print(selected_options)
             context = {
                 'trip': trip,
                 'selected_options': selected_options,

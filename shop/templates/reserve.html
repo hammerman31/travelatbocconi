@@ -54,7 +54,8 @@
 
     /* Styles for text inputs */
     input[type="text"],
-    input[type="email"] {
+    input[type="email"],
+    input[type="tel"] {
         width: 100%;
         padding: 10px 15px;
         border: 1px solid #0e153a;
@@ -68,7 +69,8 @@
     }
 
     input[type="text"]::placeholder,
-    input[type="email"]::placeholder {
+    input[type="email"]::placeholder,
+    input[type="tel"]::placeholder {
         color: #6C7CDA;
         font-family: 'Product Sans';
         font-size: 16px;
@@ -121,10 +123,13 @@
         <input type="hidden" name="options" value="{{ selected_options }}">
 
         <label for="name">Name:</label>
-        <input type="text" id="name" name="name" placeholder="First and Last Name" required>
+        <input type="text" id="name" name="names" placeholder="First and Last Name" required>
+
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" name="phone" placeholder="Your Phone Number" required>
 
         <label for="email">Email:</label>
-        <input type="email" id="email" name="email" placeholder="Your Bocconi email" pattern=".+@studbocconi\.it" required>
+        <input type="email" id="email" name="email" placeholder="Your Bocconi Email" pattern=".+@studbocconi\.it" required>
 
         <button type="submit" class="submit-button">Submit</button>
     </form>

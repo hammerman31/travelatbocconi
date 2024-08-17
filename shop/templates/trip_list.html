@@ -11,7 +11,8 @@
             flex-wrap: wrap;
             gap: 20px;
             justify-content: center;
-            margin:7px;
+            margin:7px auto;
+            max-width: 1000px;
         }
 
         .trip-box {
@@ -271,6 +272,17 @@
             margin-top: 130px;
             font-size: 60px;
         }
+        .trip-box.trip-current {
+            background-color: #738bd46b; /* Example color for current trips */
+        }
+
+        .trip-box.trip-past {
+            background-color: #081030; /* Example color for past trips */
+        }
+
+        .trip-box.trip-future {
+            background-color: #081030; /* Example color for future trips */
+        }
     </style>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
@@ -294,7 +306,13 @@
                 let selectedOptions = [];
                 let checkboxes = document.querySelectorAll('.option-checkbox-' + tripId);
                 let totalPrice = parseFloat(document.getElementById('total-price-' + tripId).textContent);
-
+                
+                checkboxes.forEach(checkbox => {
+                    if (checkbox.checked) {
+                        selectedOptions.push(checkbox.value);
+                    }
+                });
+                console.log(selectedOptions);
                 let form = document.createElement('form');
                 form.method = 'POST';
                 form.action = '{% url "reserve_trip" %}';
@@ -350,7 +368,7 @@
     <h1 class="trip-h1">Trips</h1>
     <div class="trip-list">
         {% for trip in trips %}
-        <div class="trip-box">
+        <div class="trip-box  {% if trip.status == 'past' %}trip-past{% elif trip.status == 'future' %}trip-future{% else %}trip-current{% endif %}">
             <div class="trip-header">
                 <div class="trip-title">
                     <div id="div1" class="icon-container">
@@ -381,7 +399,7 @@
                         {% for option in trip.options.all %}
                         <li>
                             <div class="checkbox-wrapper-15">
-                                <input id="cbx-{{ trip.id }}-{{ option.id }}" type="checkbox" style="display: none;" class="inp-cbx option-checkbox-{{ trip.id }}" value="{{ option.id }}" data-price-increase="{{ option.price_increase }}" onchange="updatePrice('{{ trip.id }}', {{ trip.price }})" />
+                                <input name="options" id="cbx-{{ trip.id }}-{{ option.id }}" type="checkbox" style="display: none;" class="inp-cbx option-checkbox-{{ trip.id }}" value="{{ option.id }}" data-price-increase="{{ option.price_increase }}" onchange="updatePrice('{{ trip.id }}', {{ trip.price }})" />
                                 <label class="cbx" for="cbx-{{ trip.id }}-{{ option.id }}">
                                     <span>
                                         <svg width="12px" height="9px" viewbox="0 0 12 9">
@@ -400,8 +418,15 @@
                         <p><span class="total-price-price" id="total-price-{{ trip.id }}">{{ trip.price }}€</span></p>
                     </div>
                     <div class="trip-buttons">
-                        <button class="info-button"  onclick="window.location.href='{{ trip.ig_link }}'">More Info</button>
-                        <button class="reserve-button" onclick="reserveNow('{{ trip.id }}')">Reserve</button>
+                        <button class="info-button"  onclick="window.open('{{ trip.ig_link }}', '_blank')">More Info</button>
+                        {% if trip.status == 'past' %}
+                            <button class="reserve-button">Sold Out</button>
+                        {% elif trip.status == 'future' %}
+                            <button class="reserve-button">Coming Soon</button>
+                        {% else %}
+                            <button class="reserve-button" onclick="window.location.href='{{ trip.g_form }}'">Reserve</button>
+                        {% endif %}
+                        
                     </div>
                 </div>
             </div>
